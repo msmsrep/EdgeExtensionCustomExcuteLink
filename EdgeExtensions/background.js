@@ -1,4 +1,6 @@
 import { CUSTOM_PROTOCOL } from "./config.js";
+import { TARGET_URLS } from "./config.js";
+
 
 // コンテンツスクリプトからのリクエストにカスタムプロトコル名を返す
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
@@ -6,10 +8,6 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     sendResponse({ protocol: CUSTOM_PROTOCOL });
   }
 });
-
-
-// urlを選択して右クリックメニュー
-// ローカルリンクの場合、カスタムプロトコルに置き換えて既定のアプリで開く
 
 // 定数定義
 const REGEXP_LINK = /((\\\\)[^<>"\n\r]*)/gi;
@@ -30,13 +28,15 @@ const MENU_ITEMS = [
 ];
 
 // インストール時にメニューをまとめて作成
+// urlを選択して右クリックメニュー
 chrome.runtime.onInstalled.addListener(() => {
   // 親メニュー
   chrome.contextMenus.create({
     id: "mainMenu",
     title: "カスタムメニュー",
     contexts: ["all"],
-    documentUrlPatterns: ["http://192.168.12.207/*", "http://192.168.31.106/*"],
+    // documentUrlPatterns: ["http://192.168.12.207/*", "http://192.168.31.106/*"],
+    documentUrlPatterns: TARGET_URLS,
   });
 
   // 子メニューを一括生成
@@ -59,7 +59,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 });
 
 
-// 選択テキスト中の「\\…」を特定形式に置き換えて新規タブで開く
+// ローカルリンクの場合、カスタムプロトコルに置き換えて既定のアプリで開く
 function handleOpenLink(info) {
   const text = info.selectionText || "";
   const url = text.replace(REGEXP_LINK, `${CUSTOM_PROTOCOL}$1`);
