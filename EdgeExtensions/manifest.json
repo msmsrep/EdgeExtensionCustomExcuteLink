@@ -1,0 +1,21 @@
+{
+  "name": "CustomExtensionsUNCPath",
+  "description": "ブラウザからUNCパスを開く拡張機能",
+  "version": "1.0",
+  "manifest_version": 3,
+  "icons": {
+    "16": "logo_red.png"
+  },
+  "permissions": ["contextMenus"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://192.168.12.207/*", "http://192.168.31.106/*"],
+      "js": ["CreateLink.js"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ]
+}
