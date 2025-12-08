@@ -1,4 +1,13 @@
-// 参考　https://developer.chrome.com/docs/extensions/mv2/reference/contextMenus?hl=ja#examples
+import { CUSTOM_PROTOCOL } from "./config.js";
+
+// コンテンツスクリプトからのリクエストにカスタムプロトコル名を返す
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  if (msg.type === "getProtocol") {
+    sendResponse({ protocol: CUSTOM_PROTOCOL });
+  }
+});
+
+
 // urlを選択して右クリックメニュー
 // ローカルリンクの場合、カスタムプロトコルに置き換えて既定のアプリで開く
 
@@ -53,7 +62,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 // 選択テキスト中の「\\…」を特定形式に置き換えて新規タブで開く
 function handleOpenLink(info) {
   const text = info.selectionText || "";
-  const url = text.replace(REGEXP_LINK, "cel29ee206a1f00425aabc2248aa432d2590000012:$1");
+  const url = text.replace(REGEXP_LINK, `${CUSTOM_PROTOCOL}$1`);
   chrome.tabs.create({ url });
 }
 

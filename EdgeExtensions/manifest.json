@@ -4,11 +4,13 @@
   "version": "1.0",
   "manifest_version": 3,
   "icons": {
-    "16": "logo_red.png"
+    "16": "logo_red.png",
+    "128": "logo_red.png"
   },
   "permissions": ["contextMenus"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "content_scripts": [
     {
@@ -16,6 +18,12 @@
       "js": ["CreateLink.js"],
       "run_at": "document_end",
       "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["config.js"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
