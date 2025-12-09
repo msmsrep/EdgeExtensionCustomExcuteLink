@@ -1,7 +1,4 @@
-export const CUSTOM_PROTOCOL = "cel29ee206a1f00425aabc2248aa432d259000001:";
-// 自分用　cel29ee206a1f00425aabc2248aa432d259000001
-// 配布用　cel29ee206a1f00425aabc2248aa432d2590000012
-// ⇒単純なguuidにする　後ろに連番入れない
+export const CUSTOM_PROTOCOL = "cel34ca2102-4e2c-4a7c-8af9-a46fe61750a9:";
 
 export const TARGET_URLS = [
     "http://192.168.12.207/*",
