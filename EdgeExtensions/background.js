@@ -18,13 +18,6 @@ const MENU_ITEMS = [
     contexts: ["selection"],
     handler: handleOpenLink
   },
-  // メニューを追加したい場合
-  // {
-  //   id: "copyURL",
-  //   title: "URLをコピー",
-  //   contexts: ["all"],
-  //   handler: handleCopyURL
-  // }
 ];
 
 // インストール時にメニューをまとめて作成
@@ -35,7 +28,6 @@ chrome.runtime.onInstalled.addListener(() => {
     id: "mainMenu",
     title: "カスタムメニュー",
     contexts: ["all"],
-    // documentUrlPatterns: ["http://192.168.12.207/*", "http://192.168.31.106/*"],
     documentUrlPatterns: TARGET_URLS,
   });
 
@@ -58,16 +50,9 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   }
 });
 
-
 // ローカルリンクの場合、カスタムプロトコルに置き換えて既定のアプリで開く
 function handleOpenLink(info) {
   const text = info.selectionText || "";
   const url = text.replace(REGEXP_LINK, `${CUSTOM_PROTOCOL}$1`);
   chrome.tabs.create({ url });
 }
-
-// 現在のタブの URL をクリップボードにコピーする例
-// function handleCopyURL(_info, tab) {
-//   const url = tab.url || "";
-//   navigator.clipboard.writeText(url).catch(console.error);
-// }
