@@ -1,71 +1,73 @@
-# Edge拡張機能の設定
+# ストア文章
+## 英語
+This extension is designed for use within an internal corporate network. It enhances specific intranet pages by providing a convenient way to open UNC paths using a custom protocol registered on the user's system.
 
-**不明な拡張機能をこの方法で追加しないようにしてください。**
+When a user selects a UNC path (such as \\server\folder\file) and chooses the custom context menu option, the extension converts the path into a predefined custom protocol and opens it with the default application. This allows users to quickly access shared folders or files directly from the browser without manually copying and pasting paths.
 
-## インストールする
-- `\\192.168.12.203\Share\12_三方工場\11_製造課\1_生産管理・出荷\98.ツール類\CustomExtensions\CustomExtensionsExcuteLinkSetup`
-- `CustomExtensionsExcuteLinkSetup.exe` をデスクトップにコピーする
-- ダブルクリック実行　すべてそのままで次へ
+The extension operates only on predefined internal network URLs and only in response to explicit user actions such as clicking a link or selecting a context menu item. It does not read local file contents, collect personal information, or transmit any data outside the user's environment. The only permission used is "contextMenus", and no external communication is performed.
 
-## 拡張機能を追加する
-インストールが完了したらこのページと指定フォルダが開きます
-- ブラウザedgeを開く
-- 上部バーへ「`edge://extensions/`」を入れて拡張機能ページを開く
-- 左下の開発者モードをONにする
-- 右上あたりに「展開して読み込み」 「拡張機能のパック」 「更新」がでて追加できるようになる
-- インストール時に開いたフォルダのパスをコピー
-- 「展開して読み込み」をクリックして開く
-- 下部へパスをペーストしてフォルダーの選択
-- アラートが出たら追加を許可
-- 拡張機能が追加されれば成功
-- 左下の開発者モードを**OFF**に戻す
+Key features:
+- Adds a custom context menu for UNC paths on specific internal network pages
+- Converts UNC paths into a custom protocol and opens them with the default application
+- Works exclusively on internal URLs defined in the extension settings
+- Activates only on user-initiated actions
+- Does not collect, store, or transmit any user data
 
-### ブラウザ立ち上げ時
-- この方法で追加した拡張機能はブラウザ立ち上げ時に「デベロッパーモードの拡張機能を無効にする」というのが表示されます
-⇒2週間表示しない。で表示を消します
-- これは開発者モードで追加された拡張機能に対する標準的な警告です
+This extension is intended for internal use only and is not designed for public distribution.
 
-## 試す
-- プリザンター、業務デザイナーのページで共有フォルダのパスが開けるか試す
-- http://192.168.31.106/pleasanter/items/259
-- http://192.168.12.207/groupware/schedule/person/detail/202508251443560001
+## 日本語
+この拡張機能は、社内ネットワーク内で利用される特定のイントラネットページ向けに設計されています。ページ上で選択した UNC パス（例：\\server\folder\file）を、ユーザーの環境に登録されているカスタムプロトコルへ変換し、既定のアプリケーションで開くための補助機能を提供します。
 
-## 機能について
-1. ブラウザのリンクを、クリックして共有フォルダを開く
-2. ブラウザ上でURLを選択して、右クリックから共有フォルダを開く
-- 補足：通常はブラウザの仕様により共有フォルダへのリンクは開けない
-- この拡張機能が使えるページ
-  - 業務デザイナー：`http://192.168.12.207/`
-  - プリザンター：`http://192.168.31.106/pleasanter/`
-- 開くことができる対象パス
-  - 本社_共有フォルダ：`\\192.168.12.203\share\`
-  - 三方_最新版管理フォルダ：`\\192.168.31.179\文書類最新版管理\`
+ユーザーが UNC パスを選択し、右クリックメニューから専用の項目を選ぶと、拡張機能がそのパスをカスタムプロトコル形式に変換し、ブラウザーから直接開くことができます。これにより、共有フォルダーやファイルへ素早くアクセスでき、業務効率を向上させます。
 
-## Chrome
-- Edge拡張機能は基本的にChromeでも使用可能です（中身が同じChromiumのため）
-- 機能のテストはしていないので自分で分かる方は試してください
+本拡張機能は、あらかじめ指定された社内ネットワークの URL 上でのみ動作し、ユーザーの明示的な操作（リンクのクリックやメニュー選択）によってのみ機能します。ローカルファイルの内容を読み取ったり、個人情報を収集したり、外部へデータを送信することはありません。使用する権限は「contextMenus」のみで、外部通信は一切行いません。
 
-## アンインストール
-1. アプリの削除
-   - 「設定」⇒「アプリ」⇒「インストールされているアプリ」
-   - `CustomExtensionsExcuteLink` を探してアンインストール
-2. 拡張機能の削除
-   - `edge://extensions/` を開く
-   - インストール済の拡張機能に`CustomExtensionsUNCPath` があるので削除
+主な機能:
+- 社内ネットワーク上の特定ページにカスタムメニューを追加
+- UNC パスをカスタムプロトコルへ変換し、既定のアプリで開く
+- 動作対象は内部ネットワークの URL のみに限定
+- ユーザー操作時のみ動作
+- データ収集・外部送信なし
+
+本拡張機能は社内利用を目的としており、一般公開を意図したものではありません。
 
 
-## セキュリティ的に
-セキュリティ的にどうなのですか？  
-⇒以下によりセキュアな運用になっています。
 
-1. 拡張機能
-   - 自作拡張機能はEdgeの基本的な開発者向け機能です
-   - ブラウザの仕様でUNCパスが制限されているのは、悪意あるリモートパスを実行させないためです
-   - 今回の場合はローカル内のみの運用に制限する事でセキュアな状態としています
-     - ローカル内のWEBサイトのみで拡張機能を有効にして、ローカルの共有フォルダのみ開くことを許可しています
-2. ネイティブアプリ（CustomExcuteLink.exe）
-   - 直接的にファイルを開いているのはネイティブアプリ（.NetのWindowsFormsで作成）です
-   - 拡張機能からこれを呼び出しています
-   - このアプリでも対象パスを制限しています
-     - 本社_共有フォルダ：`\\192.168.12.203\share\`
-     - 三方_最新版管理フォルダ：`\\192.168.31.179\文書類最新版管理\`
+
+# Privacy Policy
+## 英語
+This extension does not collect, store, or transmit any personal information, browsing data, input content, or file contents. All functionality is triggered solely by explicit user actions such as clicking a link or selecting a context menu item. No communication with external servers is performed.
+
+The only permission used is "contextMenus", and the extension operates exclusively on predefined internal network pages. No processing is performed that could compromise user privacy.
+
+## 日本語
+本拡張機能は、ユーザーの個人情報、閲覧データ、入力内容、ファイル内容など、いかなるデータも収集・保存・送信しません。動作はすべてユーザーの明示的な操作（リンクのクリックや右クリックメニューの選択）に基づいて行われ、外部サーバーとの通信も一切行いません。
+
+拡張機能が利用する権限は「contextMenus」のみであり、指定された社内ネットワーク上のページに限定して動作します。ユーザーのプライバシーを侵害する処理は一切行いません。
+
+# Developer Notes
+This extension is intended for internal use only.
+It does not collect any data and only works when the user manually interacts with a link.
+No automatic actions or background communications are performed.
+
+
+## 参考
+## 日本語
+この拡張機能は、社内システムで使用される UNC パス（\\server\share 形式）をブラウザから開くための補助ツールです。
+
+ウェブページ上の UNC パスや file:// リンクをユーザーがクリックまたは選択した場合にのみ動作し、指定されたカスタムプロトコルへ変換して既定のアプリケーションで開きます。
+
+自動で外部アプリケーションを起動したり、ユーザーデータを収集したりすることはありません。
+社内ネットワーク環境での利用を目的としており、一般ユーザー向けの機能は含まれていません。
+
+
+## 英語
+This extension is designed for internal network environments. 
+It helps users open UNC paths (\\server\share) or file:// links directly from the browser.
+
+The extension only operates when the user explicitly clicks or selects a link. 
+It converts the link into a predefined custom protocol and opens it with the default application.
+
+No data is collected, no external communication is performed, and the extension never launches external applications automatically.
+It is intended for internal use only and does not provide functionality for general public users.
+
