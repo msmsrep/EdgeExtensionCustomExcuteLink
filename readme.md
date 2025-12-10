@@ -50,24 +50,22 @@ This extension is intended for internal use only.
 It does not collect any data and only works when the user manually interacts with a link.
 No automatic actions or background communications are performed.
 
+# Support
 
-## 参考
-## 日本語
-この拡張機能は、社内システムで使用される UNC パス（\\server\share 形式）をブラウザから開くための補助ツールです。
+If you encounter any issues, have questions, or would like to request new features, please use one of the following support channels:
 
-ウェブページ上の UNC パスや file:// リンクをユーザーがクリックまたは選択した場合にのみ動作し、指定されたカスタムプロトコルへ変換して既定のアプリケーションで開きます。
+- **GitHub Issues**: [Open an issue here](https://github.com/msmsrep/EdgeExtensionCustomExcuteLink/issues)
+- **Email**: support@example.com
 
-自動で外部アプリケーションを起動したり、ユーザーデータを収集したりすることはありません。
-社内ネットワーク環境での利用を目的としており、一般ユーザー向けの機能は含まれていません。
+### Reporting Issues
+When reporting a problem, please include:
+- A clear description of the issue
+- Steps to reproduce (if applicable)
+- Your environment (browser version, OS, etc.)
+- Screenshots or logs (if helpful)
 
+### Privacy & Data
+This extension does **not** collect, store, or transmit any personal information.  
+It operates only on user actions and does not send data externally.
 
-## 英語
-This extension is designed for internal network environments. 
-It helps users open UNC paths (\\server\share) or file:// links directly from the browser.
-
-The extension only operates when the user explicitly clicks or selects a link. 
-It converts the link into a predefined custom protocol and opens it with the default application.
-
-No data is collected, no external communication is performed, and the extension never launches external applications automatically.
-It is intended for internal use only and does not provide functionality for general public users.
-
+---
