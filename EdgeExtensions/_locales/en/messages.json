@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "CustomExtensionsUNCPath"
+  },
+  "appDescription": {
+    "message": "Converts UNC paths on internal pages into a custom protocol, triggered only by user actions."
+  }
+}

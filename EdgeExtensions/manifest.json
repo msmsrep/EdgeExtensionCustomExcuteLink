@@ -1,11 +1,12 @@
 {
-  "name": "CustomExtensionsUNCPath",
-  "description": "Provides a helper function on specific internal network pages to convert UNC paths into a custom protocol and open them with the default application. Operates only on user actions and does not transmit any data externally.",
-  "version": "1.0.0",
   "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDescription__",
+  "version": "1.0.0",
+  "default_locale": "en",
   "icons": {
-    "16": "logo.png",
-    "128": "logo.png"
+    "16": "icon.png",
+    "128": "icon.png"
   },
   "host_permissions": ["http://192.168.12.207/*", "http://192.168.31.106/*"],
   "permissions": ["contextMenus"],
