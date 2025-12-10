@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "manifest_version": 3,
   "icons": {
-    "16": "logo_red.png",
-    "128": "logo_red.png"
+    "16": "logo.png",
+    "128": "logo.png"
   },
   "permissions": ["contextMenus"],
   "background": {
