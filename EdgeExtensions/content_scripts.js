@@ -21,7 +21,9 @@ document.addEventListener("click", function (e) {
       e.preventDefault();
 
       // Convert to custom protocol UNC path
-      const unc = `${CUSTOM_PROTOCOL}\\\\${urlObj.hostname}${urlObj.pathname.replace(/\//g, "\\")}`;
+      const unc = `${CUSTOM_PROTOCOL}\\\\${
+        urlObj.hostname
+      }${urlObj.pathname.replace(/\//g, "\\")}`;
       window.location.href = unc;
     }
   } catch (err) {
@@ -34,14 +36,16 @@ document.addEventListener("click", function (e) {
 // Links use the custom protocol and do NOT trigger normal href navigation.
 // Only UNC paths pointing to allowed IPs are converted.
 function SetLinks() {
-  const escapedIps = TARGET_IPS.map(ip => ip.replace(/\./g, "\\."));
+  const escapedIps = TARGET_IPS.map((ip) => ip.replace(/\./g, "\\."));
   const rex = new RegExp(
     String.raw`\\\\(?:${escapedIps.join("|")})\\[^<>"\n\r]*`,
     "gi"
   );
 
+  // Get all elements that may contain UNC paths.
+  // These elements are identified by the CSS classes "Reference" and "multiple-lines".
   const qs = document.querySelectorAll(".Reference, .multiple-lines");
-  qs.forEach(el => {
+  qs.forEach((el) => {
     const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
 
     while (walker.nextNode()) {
@@ -87,4 +91,3 @@ chrome.runtime.sendMessage({ type: "getHostname" }, (res) => {
   TARGET_IPS = res.hostname;
   SetLinks();
 });
-
