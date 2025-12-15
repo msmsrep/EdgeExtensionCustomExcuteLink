@@ -1,4 +1,4 @@
-// This file contains static configuration values used by the extension.
+// This file defines static configuration values used by the extension.
 // No data is collected, stored, or transmitted. All values are predefined
 // and used only to support functionality on specific internal network pages.
 
@@ -12,3 +12,7 @@ export const TARGET_URLS = [
   "http://192.168.12.207/*",
   "http://192.168.31.106/*",
 ];
+
+// List of allowed IP addresses for UNC path handling.
+// Only paths pointing to these IPs will be processed.
+export const TARGET_IPS = ["192.168.31.179", "192.168.12.203"];
