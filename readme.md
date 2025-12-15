@@ -31,6 +31,43 @@ This extension is intended for internal use only and is not designed for public 
 
 本拡張機能は社内利用を目的としており、一般公開を意図したものではありません。
 
+# Summary of Changes
+## ver1.1.0
+### 英語
+The following updates were made to improve safety and restrict the extension’s behavior to approved internal network resources only.
+These changes do not introduce any data collection, storage, or transmission.
+All actions are triggered solely by explicit user interactions.
+
+■ Summary of Changes
+1. background.js
+- Added IP‑address whitelisting to handleOpenLink.
+Only file:// URLs whose hostname matches the approved internal IP list are converted into the custom protocol and opened.
+2. content_scripts.js
+- Added IP‑address restrictions to the click‑event handler.
+Only file:// links pointing to allowed IPs are intercepted and converted.
+- Added a new SetLinks function:
+- Converts plain‑text UNC paths (e.g., \\server\share\file.txt) into clickable links.
+- Links use the custom protocol and do not trigger normal browser navigation.
+- Only UNC paths pointing to approved IP addresses are converted.
+- The conversion is performed safely using text‑node processing to avoid modifying HTML structure.
+
+### 日本語
+以下の更新は、安全性の向上と拡張機能の動作を承認済み内部ネットワークリソースのみに制限するために行われました。
+これらの変更により、データの収集、保存、送信は一切行われません。
+すべての動作は、明示的なユーザー操作によってのみトリガーされます。
+
+■ 変更点のまとめ
+1. background.js
+- handleOpenLink に IP アドレスのホワイトリスト機能を追加。
+承認済み内部 IP リストとホスト名が一致する file:// URL のみがカスタムプロトコルに変換され開かれます。
+2. content_scripts.js
+- クリックイベントハンドラにIPアドレス制限を追加。
+許可されたIPを指すfile://リンクのみが捕捉・変換されます。
+- 新機能SetLinksを追加：
+- プレーンテキストのUNCパス（例：\\server\share\file.txt）をクリック可能なリンクに変換。
+- リンクはカスタムプロトコルを使用し、通常のブラウザナビゲーションは発生しません。
+- 承認済みIPアドレスを指すUNCパスのみが変換対象となります。
+- HTML構造を変更しないよう、テキストノード処理を用いた安全な変換を実行します。
 
 
 
